@@ -1,0 +1,51 @@
+{% extends "@Cron/base.html.twig" %}
+
+{% block title %}{{ 'Cron tasks homepage'|trans }}{% endblock %}
+
+
+
+{% block body %}
+
+    <div class="container-fluid">
+        <div class="row my-3">
+            <div class="col-12">
+                <h1>
+                    <i class="fa fa-clipboard"></i> Détails du rapport # {{report.id}}
+                    <div class="btn-group float-right">
+                        <a class="btn btn-primary" href="{{ path('ics-cron-homepage') }}" title="Return to reports list"><i class="fa fa-arrow-left"></i></a>
+                    </div>
+                </h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <table class="table">
+                    <thead>
+                        <th>{{ 'Status'|trans }}</th>
+                        <th>{{ 'Texte'|trans }}</th>
+                        <th>{{ 'Date de la ligne'|trans }}</th>
+                    </thead>
+                    <tbody>
+                        {% for line in report.lines %}
+                            {% if line.type == 'danger' %}
+                                {% set icon = 'fa fa-exclamation-circle' %}
+                            {% elseif line.type == 'warning' %}
+                                {% set icon = 'fa fa-exclamation-triangle' %}
+                            {% elseif line.type == 'success' %}
+                                {% set icon = 'fa fa-check-circle' %}
+                            {% else %}
+                                {% set icon = 'fa fa-info-circle' %}
+                            {% endif %}
+                            <tr>
+                                <td><i class="{{ icon }} text-{{ line.type }}"></i></td>
+                                <td><pre class="bg-dark text-light p-3">{{ line.text }}</pre></td>
+                                <td>{{ line.dateLine|date('d/m/Y H:i:s') }}</td>
+                            </tr>
+                        {% endfor %}
+                    <tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

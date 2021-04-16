@@ -1,0 +1,21 @@
+<script>
+$(document).ready(function(){
+
+
+    getReportList_{{ widget.id }}();
+    function getReportList_{{ widget.id }}()
+    {
+        $('#reportList-{{ widget.id }}').html('<div class="spinner-border spinner-border-sm" role="status"></div> ' + '{{ "Loading"|trans }}' + '...');
+        $.ajax({
+            url: '{{ path('ics-cron-report-list') }}',
+            data: {
+                'widgetId': {{ widget.id }}
+            }
+        }).done(function(data){
+            $('#reportList-{{ widget.id }}').html(data);
+        });
+
+    }
+});
+
+</script>

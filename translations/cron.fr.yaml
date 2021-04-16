@@ -1,0 +1,49 @@
+Monday: Lundi
+Thuesday: Mardi
+Wednesday: Mercredi
+Thursday: Jeudi
+Friday: Vendredi
+Saturday: Samedi
+Sunday: Dimanche
+Task: Tâche
+Periodicity: Periodicité
+Weekly: Hebdomadaire
+Daily: Journalière
+Monthly: Mensuelle
+Yearly: Annuelle
+Last Day: Dernier Jour
+January: Janvier
+Febuary: Février
+March: Mars
+April: Avril
+May: Mai
+June: Juin
+July: Juillet
+August: Août
+September: Septembre
+October: Octobre
+November: Novembre
+December: Décembre
+success: Succès
+warning: Attention
+danger: Erreur
+info: Information
+Task List: Liste des tâches
+Report List: Liste des rapports
+Status: Statut
+Task name: Nom de la tâche
+Start Date: Date de début
+End Date: Date de fin
+Duration: Durée
+Task Type: Type de tâche
+Next execution: Prochaine exécution
+Last result: Dernier résultat
+Last execution: Dernière exécution
+Add Task: Ajouter une tâche
+
+# Class Translation
+ICS\CronBundle\Entity\Type\WeeklyType: Hebomadaire
+ICS\CronBundle\Entity\Type\MonthlyType: Mensuelle
+ICS\CronBundle\Entity\Type\YearlyType: Annuelle
+ICS\CronBundle\Entity\Type\DailyType: Journalière
+ICS\CronBundle\Entity\CronTask\CronTestTask: Test des cron

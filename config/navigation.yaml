@@ -1,0 +1,7 @@
+navigation:
+  usermenu:
+    childs:
+      cronhomepage:
+        lib: Cron
+        icon: fa fa-cogs
+        route: ics-cron-homepage

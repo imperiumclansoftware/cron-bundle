@@ -1,0 +1,23 @@
+{% extends "@Dashboard/widget.html.twig" %}
+
+{% trans_default_domain('cron') %}
+
+{% block content %}
+
+<div id="rlwWidget-{{ widget.id }}" class="text-center">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <h1><i class="fa fa-clipboard"></i><h1>
+                <h2>{{ 'Report List'|trans }}</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div id="reportList-{{ widget.id }}" class="col-12">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

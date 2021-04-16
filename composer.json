@@ -1,0 +1,21 @@
+{
+    "name": "ics/cron-bundle",
+    "description": "Bundle de gestion des taches planifiées",
+    "type": "symfony-bundle",
+    "version": "0.0.2",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "ICS\\CronBundle\\" : "src/"
+        }
+    },
+    "require": {
+        "symfony/framework-bundle": "^5.2",
+        "symfony/console": "^5.2",
+        "symfony/orm-pack": "^2.1",
+        "symfony/twig-bundle": "^5.2",
+        "easycorp/easyadmin-bundle": "^3.2",
+        "symfony/dependency-injection": "^5.2"
+    }
+
+}

@@ -1,0 +1,31 @@
+{% extends "@Cron/base.html.twig" %}
+
+{% trans_default_domain('cron') %}
+
+{% block title %}Add Task{% endblock %}
+
+{% block content %}
+
+{{ form_start(form) }}
+<div class="row">
+    <div class="col-md-6">
+        <fieldset>
+        <legend><i class="fa fa-clipboard"></i> {{ 'Task'|trans }}</legend>
+        {{ form_row(form.name) }}
+        {{ form_row(form.description) }}
+        {{ form_row(form.group) }}
+        </fieldset>
+    </div>
+    <div class="col-md-6">
+        <fieldset>
+        <legend><i class="fa fa-sync"></i> {{ 'Periodicity'|trans }} : {{ cronType.clearName|trans }}</legend>
+        {% include('@Cron/type/'~cronType.clearName~'.html.twig') %}
+        </fieldset>
+    </div>
+</div>
+<button class="btn btn-primary" type="submit">Envoyer</button>
+{{ form_end(form) }}
+
+
+
+{% endblock %}

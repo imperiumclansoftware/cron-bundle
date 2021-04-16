@@ -1,0 +1,13 @@
+{% extends "@Cron/base.html.twig" %}
+
+{% block title %}Cron tasks homepage{% endblock %}
+
+{% block stylesheets %}{{ renderDashBoardcss('cronbundle') }}{% endblock %}
+
+{% block body %}
+
+{{ renderDashBoard('cronbundle') }}
+
+{% endblock %}
+
+{% block javascripts %}{{ renderDashBoardjs('cronbundle') }}{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "@Cron/base.html.twig" %}
+
+{% trans_default_domain('cron') %}
+
+{% block title %}Add Task{% endblock %}
+
+{% block content %}
+<form method="POST">
+
+    <div class="form-group">
+        <label class="form-label">{{'Task'|trans}}</label>
+        <select name="taskType" class="form-control">
+            {% for task in taskList %}
+                <option value="{{ task }}">{{ task|trans }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label class="form-label">{{'Periodicity'|trans}}</label>
+        <select name="taskFormType" class="form-control">
+            {% for periodicity in taskTypeList %}
+                <option value="{{ periodicity }}">{{ periodicity|trans }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <button class="btn btn-primary" type="submit">Envoyer</button>
+</form>
+{% endblock %}

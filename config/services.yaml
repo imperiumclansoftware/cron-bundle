@@ -1,0 +1,11 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+
+  ICS\CronBundle\Controller\:
+    resource: "../src/Controller"
+    tags: ['controller.service_arguments']
+  ICS\CronBundle\Command\:
+    resource: "../src/Command"
+    tags: ['controller.service_arguments']

@@ -1,0 +1,44 @@
+{% trans_default_domain('cron') %}
+<table class="table" style="color: {{ widget.textcolor }};">
+<tr>
+    <th>{{ 'Task name'|trans }}</th>
+    <th>{{ 'Task type'|trans }}</th>
+    <th>{{ 'Next execution'|trans }}</th>
+    <th>{{ 'Last result'|trans }}</th>
+    <th>{{ 'Last execution'|trans }}</th>
+</tr>
+{% for task in tasks %}
+    <tr>
+        <td><a style="color: {{ widget.textColor }};" href="{{ path('ics-cron-task-show',{ id: task.id}) }}"><i class="fa fa-cog"></i> {{ task.name|trans }}</a></td>
+        <td>{{ task.cronType.clearName|trans }}</td>
+        <td>{{ task.nextExecution|date('d/m/Y H:i',task.cronType.timezone) }}</td>
+        <td class="">
+            {% if task.lastReport %}
+                 {% if task.lastReport.globalResult == 'danger' %}
+                    {% set icon = 'fa fa-exclamation-circle' %}
+                {% elseif task.lastReport.globalResult == 'warning' %}
+                    {% set icon = 'fa fa-exclamation-triangle' %}
+                {% else %}
+                    {% set icon = 'fa fa-check-circle' %}
+                {% endif %}
+                <i class="{{ icon }}  text-{{ task.lastReport.globalResult }}"></i>
+            {% else %}
+                <i class="fa fa-ban"></i>
+            {% endif %}
+        </td>
+        <td class="">
+            {% if task.lastReport %}
+                {{ task.lastReport.dateEnd|date('d/m/Y H:i',task.cronType.timezone) }}
+            {% else %}
+                <i class="fa fa-ban"></i>
+            {% endif %}
+        </td>
+    </tr>
+{% endfor %}
+
+</table>
+<div class="btn-group">
+    <a href="{{ path('ics-cron-add') }}" class="btn btn-primary">
+        <i class="fa fa-plus"></i> {{ 'Add Task'|trans }}
+    </a>
+</div>

@@ -1,0 +1,90 @@
+{% extends "@Cron/base.html.twig" %}
+{% trans_default_domain('cron') %}
+{% block title %}Cron tasks homepage{% endblock %}
+
+{% block body %}
+
+    <div class="container-fluid">
+        <div class="row my-3">
+            <div class="col-12">
+                <h1>
+                    <i class="fa fa-cogs"></i> {{ 'Affichage de la tâche'|trans }} :  {{ task.technicalName|trans }} <small>(#{{ task.id }})</small>
+                    <div class="btn-group float-right ml-3">
+                        <a class="btn btn-danger" href="#" title="Delete task"><i class="fa fa-trash"></i></a>
+                    </div>
+                    <div class="btn-group float-right">
+                        <a class="btn btn-primary" href="{{ path('ics-cron-homepage') }}" title="Return to homepage"><i class="fa fa-arrow-left"></i></a>
+                        <a class="btn btn-success" href="#" title="Excute task"><i class="fa fa-play"></i></a>
+                    </div>
+                    
+                </h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-md-4">
+                <h2><i class="fa fa-info-circle"></i> {{ 'Task Information'|trans }}</h2>
+                <div class="border border-info text-info p-3 my-3">
+                    <h5>Description</h5>
+                    <p>{{ task.description|raw }}</p>
+                </div>
+                
+                <table class="table">
+                    <thead>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>{{ 'Type'|trans }}</th>
+                            <td>{{ task.crontype.clearName }}</td>
+                        </tr>
+                        <tr>
+                            <th>{{ 'Next Execution'|trans }}</th>
+                            <td>{{ task.nextExecution|date('d/m/Y H:i') }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-12 col-md-8">
+                <h2><i class="fa fa-clipboard"></i> {{ 'Task reports'|trans }}</h2>
+                 <table class="table">
+                    <thead>
+                        <tr>
+                            <th>{{ 'Status'|trans }}</th>
+                            <th>{{ 'Start date'|trans }}</th>
+                            <th>{{ 'End date'|trans }}</th>
+                            <th>{{ 'Duration'|trans }}</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for report in task.reports %}
+
+                            {% if report.globalResult == 'danger' %}
+                                {% set icon = 'fa fa-exclamation-circle' %}
+                            {% elseif report.globalResult == 'warning' %}
+                                {% set icon = 'fa fa-exclamation-triangle' %}
+                            {% else %}
+                                {% set icon = 'fa fa-check-circle' %}
+                            {% endif %}
+
+                            <tr>
+                                <td title="{{ report.globalResult|trans }}"><i class="{{ icon }} text-{{ report.globalResult }}"></i></td>
+                                <td>{{ report.dateStart|date('d/m/Y H:i') }}</td>
+                                <td>{{ report.dateEnd|date('d/m/Y H:i') }}</td>
+                                <td>{{ report.duration|date('%i min %s sec %f µs') }}</td>
+                                <td>
+                                    <a class="btn btn-primary" href="{{ path('ics-cron-report',{ id: report.id }) }}">
+                                        <i class="fa fa-eye"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+
+
+
+                </table>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

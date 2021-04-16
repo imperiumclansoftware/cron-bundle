@@ -1,0 +1,42 @@
+{% trans_default_domain('cron') %}
+<table class="table" style="color: {{ widget.textcolor }};">
+    <thead>
+        <tr>
+            <th>{{ "Status"|trans }}</th>
+            <th>{{ "Task name"|trans }}</th>
+            <th>{{ "Start date"|trans }}</th>
+            <th>{{ "End date"|trans }}</th>
+            <th>{{ "Duration"|trans }}</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for report in reports %}
+
+            {% if report.globalResult == 'danger' %}
+                {% set icon = 'fa fa-exclamation-circle' %}
+            {% elseif report.globalResult == 'warning' %}
+                {% set icon = 'fa fa-exclamation-triangle' %}
+            {% else %}
+                {% set icon = 'fa fa-check-circle' %}
+            {% endif %}
+
+            <tr>
+                <td title="{{ report.globalResult|trans }}"><i class="{{ icon }} text-{{ report.globalResult }}"></i></td>
+                <td>
+                    <a style="color: {{ widget.textcolor }};" href="{{ path('ics-cron-task-show',{ id: report.cronTask.id }) }}">
+                       <i class="fa fa-cog"></i> {{ report.cronTask.name|trans }}
+                    </a>
+                </td>
+                <td>{{ report.dateStart|date('d/m/Y H:i') }}</td>
+                <td>{{ report.dateEnd|date('d/m/Y H:i') }}</td>
+                <td>{{ report.duration|date('%i min %s sec %f µs') }}</td>
+                <td>
+                    <a class="btn btn-primary" href="{{ path('ics-cron-report',{ id: report.id }) }}">
+                        <i class="fa fa-eye"></i>
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>

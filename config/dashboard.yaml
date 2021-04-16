@@ -1,0 +1,20 @@
+dashboard:
+  dashboards:
+    cronbundle:
+      nbColumns: 12
+      widgets:
+        help:
+          entity: ICS\DashboardBundle\Entity\HelpWidget
+          libelle: Help on widgets
+          icon: fa fa-info-circle
+          group: Aide
+        taskList:
+          entity: ICS\CronBundle\Entity\Widgets\TaskListWidget
+          libelle: Task List
+          icon: fa fa-cogs
+          group: Cron Task
+        reportList:
+          entity: ICS\CronBundle\Entity\Widgets\ReportListWidget
+          libelle: Report List
+          icon: fa fa-clipboard
+          group: Cron Task

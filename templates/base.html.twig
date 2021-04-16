@@ -1,0 +1,33 @@
+{% extends "base.html.twig" %}
+
+{% trans_default_domain('cron') %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('bundles/cron/css/cron.css') }}" />
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('bundles/cron/js/cron.js') }}"></Script>
+{% endblock %}
+
+
+{% block body %}
+    <div class="container-fluid">
+        <div class="row my-3">
+            <div class="col-12">
+                <h1>
+                    {% block contentTitle %}
+                        <i class="fa fa-cogs"></i> Welcome to CronBundle
+                    {% endblock %}
+                </h1>
+            </div>
+        </div>
+        <div class="row my-3">
+            <div class="col-12">
+                {% block content %}
+
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
