@@ -17,7 +17,7 @@ class TaskListWidget extends Widget
         parent::__construct($twig);
         $this->setWidth(6);
         $this->setHeight(6);
-        $this->setBgColor("#009f6f");
+        $this->setBgColor("#14808B");
     }
 
     public function getJs()

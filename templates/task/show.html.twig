@@ -1,6 +1,6 @@
 {% extends "@Cron/base.html.twig" %}
 {% trans_default_domain('cron') %}
-{% block title %}Cron tasks homepage{% endblock %}
+{% block title %}Cron tasks {{ task.name }}{% endblock %}
 
 {% block body %}
 
@@ -8,7 +8,7 @@
         <div class="row my-3">
             <div class="col-12">
                 <h1>
-                    <i class="fa fa-cogs"></i> {{ 'Affichage de la tâche'|trans }} :  {{ task.technicalName|trans }} <small>(#{{ task.id }})</small>
+                    <i class="fa fa-cogs"></i> {{ 'Affichage de la tâche'|trans }} :  {{ task.name }} <small class="text-muted">[{{ task.technicalName|trans }}] (#{{ task.id }})</small>
                     <div class="btn-group float-right ml-3">
                         <a class="btn btn-danger" href="#" title="Delete task"><i class="fa fa-trash"></i></a>
                     </div>
@@ -16,7 +16,7 @@
                         <a class="btn btn-primary" href="{{ path('ics-cron-homepage') }}" title="Return to homepage"><i class="fa fa-arrow-left"></i></a>
                         <a class="btn btn-success" href="#" title="Excute task"><i class="fa fa-play"></i></a>
                     </div>
-                    
+
                 </h1>
             </div>
         </div>
@@ -27,7 +27,7 @@
                     <h5>Description</h5>
                     <p>{{ task.description|raw }}</p>
                 </div>
-                
+
                 <table class="table">
                     <thead>
                     </thead>

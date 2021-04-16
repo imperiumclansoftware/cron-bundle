@@ -51,6 +51,7 @@ class YearlyType extends MonthlyType
 
     private function getPotentialDate(int $year): DateTime
     {
+        //TODO: Verification du système
         $potentialDate = [];
         foreach ($this->getMonthDays() as $day) {
             foreach ($this->months as $month) {
@@ -60,7 +61,7 @@ class YearlyType extends MonthlyType
         }
 
         foreach ($potentialDate as $finalDate) {
-            if ($this->verifTime($finalDate)) {
+            if (is_a($finalDate,DateTime::class) && $this->verifTime($finalDate)) {
                 return $finalDate;
             }
         }

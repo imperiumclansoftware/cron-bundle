@@ -197,4 +197,7 @@ class CronController extends AbstractController
         $twigExtension = $twig->getExtension(CoreExtension::class);
         $twigExtension->setTimezone($this->timezone);
     }
+
+    //TODO: Manage remove Task
+    //TODO: Manage Immediate execution
 }
