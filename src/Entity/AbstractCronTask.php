@@ -248,4 +248,9 @@ abstract class AbstractCronTask
 
         return $result;
     }
+
+    public function __toString()
+    {
+        return $this->name.' ('.get_class($this).')';
+    }
 }

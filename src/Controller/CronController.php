@@ -11,6 +11,7 @@ use ICS\CronBundle\Entity\Type\DailyType;
 use ICS\CronBundle\Entity\Type\MonthlyType;
 use ICS\CronBundle\Entity\Type\WeeklyType;
 use ICS\CronBundle\Entity\Type\YearlyType;
+use ICS\CronBundle\Entity\Widgets\ReportListWidget;
 use ICS\CronBundle\Entity\Widgets\TaskListWidget;
 use ICS\CronBundle\Form\Type\DailyType as TypeDailyType;
 use ICS\CronBundle\Form\Type\MonthlyType as TypeMonthlyType;
@@ -35,9 +36,6 @@ class CronController extends AbstractController
     public function index()
     {
         $tasks = $this->getDoctrine()->getRepository(AbstractCronTask::class)->findAll();
-
-        dump($tasks);
-
         return $this->render('@Cron/index.html.twig', [
         ]);
     }
@@ -109,7 +107,6 @@ class CronController extends AbstractController
             $taskTypeList = [];
             $classList = $em->getConfiguration()->getMetadataDriverImpl()->getAllClassNames();
 
-            dump($classList);
             foreach ($classList as $class) {
                 if (is_subclass_of($class, AbstractCronType::class)) {
                     $taskTypeList[] = $class;
@@ -158,7 +155,7 @@ class CronController extends AbstractController
         }
 
         $reports = $this->getDoctrine()->getRepository(CronReport::class)->findAll();
-        $widget = $this->getDoctrine()->getRepository(TaskListWidget::class)->find($widgetId);
+        $widget = $this->getDoctrine()->getRepository(ReportListWidget::class)->find($widgetId);
 
         return $this->render('@Cron/widgets/reportListResult.html.twig', [
             'reports' => $reports,

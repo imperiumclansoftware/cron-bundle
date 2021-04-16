@@ -71,7 +71,9 @@ abstract class AbstractCronType
         $now = new DateTime();
         $now->setTimezone($this->timezone);
 
-        if ($now < $testDate) {
+        $info=$now->diff($testDate);
+
+        if ($info->i <= 1) {
             return true;
         }
 

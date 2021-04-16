@@ -40,6 +40,7 @@ Next execution: Prochaine exécution
 Last result: Dernier résultat
 Last execution: Dernière exécution
 Add Task: Ajouter une tâche
+Cron: Tâches planifiées
 
 # Class Translation
 ICS\CronBundle\Entity\Type\WeeklyType: Hebomadaire

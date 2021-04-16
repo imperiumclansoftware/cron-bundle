@@ -3,7 +3,7 @@
 namespace ICS\CronBundle\Entity\Widgets;
 
 use Doctrine\ORM\Mapping as ORM;
-use ics\DashboardBundle\Entity\Widget;
+use ICS\DashboardBundle\Entity\Widget;
 use Twig\Environment;
 
 /**
@@ -17,6 +17,7 @@ class TaskListWidget extends Widget
         parent::__construct($twig);
         $this->setWidth(6);
         $this->setHeight(6);
+        $this->setBgColor("#009f6f");
     }
 
     public function getJs()

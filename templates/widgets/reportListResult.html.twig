@@ -1,5 +1,10 @@
 {% trans_default_domain('cron') %}
-<table class="table" style="color: {{ widget.textcolor }};">
+
+{% if widget!=null %}
+    <table class="table" style="color: {{ widget.textcolor }};">
+{% else %}
+    <table class="table">
+{% endif %}
     <thead>
         <tr>
             <th>{{ "Status"|trans }}</th>

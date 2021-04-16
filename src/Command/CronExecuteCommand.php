@@ -3,6 +3,7 @@
 namespace ICS\CronBundle\Command;
 
 use DateTime;
+use DateTimeZone;
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
 use ICS\CronBundle\Entity\AbstractCronTask;
@@ -20,6 +21,7 @@ class CronExecuteCommand extends Command
     private $doctrine;
     private $container;
     private $kernel;
+    private $timezone;
 
     public function __construct(EntityManagerInterface $doctrine, ContainerInterface $container, KernelInterface $kernel)
     {
@@ -28,6 +30,9 @@ class CronExecuteCommand extends Command
         $this->doctrine = $doctrine;
         $this->container = $container;
         $this->kernel = $kernel;
+
+        $this->config = $this->container->getParameter('cron');
+        $this->timezone = new DateTimeZone($this->config['timezone']);
     }
 
     protected function configure()
@@ -40,7 +45,9 @@ class CronExecuteCommand extends Command
     {
         $io = new SymfonyStyle($input, $output);
 
+
         $io->title('Cron Task Execution');
+
 
         $taskToExecute = [];
 
@@ -49,28 +56,40 @@ class CronExecuteCommand extends Command
             $tasks = $this->doctrine->getRepository(AbstractCronTask::class)->findAll();
 
             $now = new DateTime();
-            $comparaisonFormat = 'dmYHI';
-            $io->progressStart(count($tasks));
+            $now->setTimezone($this->timezone);
+            $comparaisonFormat = 'dmYHi';
             $io->text('Task verification');
+
+            $io->progressStart(count($tasks));
+
 
             foreach ($tasks as $task) {
                 $io->progressAdvance();
+                // $io->text($task->getName().':'.$task->getNextExecution()->format($comparaisonFormat).'='.$now->format($comparaisonFormat));
                 if ($task->getNextExecution()->format($comparaisonFormat) == $now->format($comparaisonFormat)) {
                     $taskToExecute[] = $task;
                 }
             }
+            $io->progressFinish();
+            // if(count($taskToExecute) > 0)
+            // {
 
-            $io->text('Task execution');
-            $io->progressStart(count($taskToExecute));
-            foreach ($taskToExecute as $task) {
-                $io->text('Execute : '.$task->getName());
-                $task->Initialize($this->container, $this->doctrine, $this->kernel);
-                $task->execute();
-                $io->text('Task ID: #'.$task->getId());
-                $this->doctrine->persist($task);
-            }
+                $io->text('Task execution');
+                $io->definitionList("Task to execute",$taskToExecute);
 
-            $this->doctrine->flush();
+                $io->progressStart(count($taskToExecute));
+                foreach ($taskToExecute as $task) {
+
+                    $task->Initialize($this->container, $this->doctrine, $this->kernel);
+
+                    $task->execute();
+                    $io->progressAdvance();
+
+                    $this->doctrine->persist($task);
+                }
+                $io->progressFinish();
+                $this->doctrine->flush();
+            // }
         } catch (Exception $ex) {
             $io->error($ex->getMessage());
         }
