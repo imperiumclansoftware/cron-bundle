@@ -15,7 +15,8 @@
         "symfony/orm-pack": "^2.1",
         "symfony/twig-bundle": "^5.2",
         "easycorp/easyadmin-bundle": "^3.2",
-        "symfony/dependency-injection": "^5.2"
+        "symfony/dependency-injection": "^5.2",
+        "ics/dashboard-bundle": "^0.0.3"
     }
 
 }

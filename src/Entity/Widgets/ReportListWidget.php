@@ -16,7 +16,7 @@ class ReportListWidget extends Widget
     {
         parent::__construct($twig);
         $this->setWidth(6);
-        $this->setHeight(8);
+        $this->setHeight(6);
     }
 
     public function getJs()
