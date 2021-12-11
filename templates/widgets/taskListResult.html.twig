@@ -9,7 +9,7 @@
 </tr>
 {% for task in tasks %}
     <tr>
-        <td><a style="color: {{ widget.textColor }};" href="{{ path('ics-cron-task-show',{ id: task.id}) }}"><i class="fa fa-cog"></i> {{ task.name|trans }}</a></td>
+        <td class="text-start"><a style="color: {{ widget.textColor }};" href="{{ path('ics-cron-task-show',{ id: task.id}) }}"><i class="fa fa-cog"></i> {{ task.name|trans }}</a></td>
         <td>{{ task.cronType.clearName|trans }}</td>
         <td>{{ task.nextExecution|date('d/m/Y H:i',task.cronType.timezone) }}</td>
         <td class="">

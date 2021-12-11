@@ -2,10 +2,10 @@
 
 namespace ICS\CronBundle\Entity\Type;
 
-use DateInterval;
-use DateTime;
-use DateTimeZone;
 use Doctrine\ORM\Mapping as ORM;
+use DateTimeZone;
+use DateTime;
+use DateInterval;
 
 /**
  * @ORM\Entity
@@ -39,10 +39,13 @@ class MonthlyType extends AbstractCronType
         $now->setTime($this->hour, $this->minute);
 
         foreach ($this->monthDays as $day) {
-            $now->setDate((int) $now->format('Y'), (int) $now->format('m'), $day);
-            //TODO: Manage last day
-            if ($this->verifTime($now)) {
-                return $now;
+            if($day != 'lastday')
+            {
+                $now->setDate((int) $now->format('Y'), (int) $now->format('m'), $day);
+                //TODO: Manage last day
+                if ($this->verifTime($now)) {
+                    return $now;
+                }
             }
         }
 

@@ -10,13 +10,13 @@
         }
     },
     "require": {
-        "symfony/framework-bundle": "^5.2",
-        "symfony/console": "^5.2",
-        "symfony/orm-pack": "^2.1",
-        "symfony/twig-bundle": "^5.2",
+        "symfony/framework-bundle": "^5",
+        "symfony/console": "^5",
+        "symfony/orm-pack": "^2",
+        "symfony/twig-bundle": "^5",
         "easycorp/easyadmin-bundle": "^3.2",
-        "symfony/dependency-injection": "^5.2",
-        "ics/dashboard-bundle": "^0.0.3"
+        "symfony/dependency-injection": "^5",
+        "ics/dashboard-bundle": "^0"
     }
 
 }

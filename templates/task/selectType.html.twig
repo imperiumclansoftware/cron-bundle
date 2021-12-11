@@ -9,7 +9,7 @@
 
     <div class="form-group">
         <label class="form-label">{{'Task'|trans}}</label>
-        <select name="taskType" class="form-control">
+        <select name="taskType" class="form-select">
             {% for task in taskList %}
                 <option value="{{ task }}">{{ task|trans }}</option>
             {% endfor %}
@@ -18,7 +18,7 @@
 
     <div class="form-group">
         <label class="form-label">{{'Periodicity'|trans}}</label>
-        <select name="taskFormType" class="form-control">
+        <select name="taskFormType" class="form-select">
             {% for periodicity in taskTypeList %}
                 <option value="{{ periodicity }}">{{ periodicity|trans }}</option>
             {% endfor %}

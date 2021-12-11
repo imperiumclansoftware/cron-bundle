@@ -1,0 +1,9 @@
+doctrine:
+    orm:
+        mappings:
+            CronBundle:
+                is_bundle: true
+                type: annotation
+                dir: 'src/Entity'
+                prefix: 'ICS\CronBundle\Entity'
+                alias: Cron

@@ -2,11 +2,11 @@
 
 namespace ICS\CronBundle\DependencyInjection;
 
-use Symfony\Component\Config\FileLocator;
-use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\DependencyInjection\Extension\Extension;
-use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
+use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
+use Symfony\Component\DependencyInjection\Extension\Extension;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\Config\FileLocator;
 
 class CronExtension extends Extension implements PrependExtensionInterface
 {
@@ -32,6 +32,8 @@ class CronExtension extends Extension implements PrependExtensionInterface
         $loader = new YamlFileLoader($container, new FileLocator(__DIR__.'/../../config/'));
         $bundles = $container->getParameter('kernel.bundles');
 
+        $loader->load('doctrine.yaml');
+        
         if (isset($bundles['NavigationBundle'])) {
             $loader->load('navigation.yaml');
         }

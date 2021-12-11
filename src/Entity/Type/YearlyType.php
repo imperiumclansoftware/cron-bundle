@@ -2,9 +2,9 @@
 
 namespace ICS\CronBundle\Entity\Type;
 
-use DateTime;
-use DateTimeZone;
 use Doctrine\ORM\Mapping as ORM;
+use DateTimeZone;
+use DateTime;
 
 /**
  * @ORM\Entity
@@ -45,7 +45,7 @@ class YearlyType extends MonthlyType
             $this->timezone = new DateTimeZone('Europe/Paris');
         }
         $now = new DateTime();
-
+return $now;
         return $this->getPotentialDate((int) $now->format('Y'));
     }
 
