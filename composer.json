@@ -2,7 +2,7 @@
     "name": "ics/cron-bundle",
     "description": "Bundle de gestion des taches planifiées",
     "type": "symfony-bundle",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "license": "MIT",
     "autoload": {
         "psr-4": {
